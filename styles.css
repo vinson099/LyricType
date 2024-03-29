@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 50vh;
+    margin: 50;
+    background-color: bisque;
+    font-size: 2rem;
+    font-family: 'Roboto Mono', monospace;
+    padding-top: 6rem;
+}
+
+.container{
+    background-color: bisque;
+    padding: 1rem;
+    border-radius: .4rem;
+    width: 3000px;
+    max-width: 95%;
+}
+
+.lyricDisplay{
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    color: rgb(142, 141, 141);
+}
+
+.lyricInput{
+    background-color: transparent;
+    border: transparent;
+    outline: none;
+    width: 100%;
+    max-width: 95%;
+    height: 15rem;
+    margin: 2rem;
+    font-size: 2rem;
+    font-family: 'Roboto Mono', monospace;
+    
+}
+
+.lyricInput:focus{
+    border-color: rgb(191, 172, 148);
+}
+
+.correct{
+    color: black;
+}
+
+.incorrect{
+    color: red;
+    text-decoration: underline;
+}
+
+.play-button {
+    display: inline-block;
+    width: 25rem; /* Adjust the width and height as needed */
+    height: 25rem;
+    background-color: #7403e4;
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+    border-radius: 50%; /* Make it a circle */
+    /* transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; */
+
+    /* Ensure button is on top */
+    z-index: 9999; /* Set a high z-index value */
+
+    /* Centering on screen */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+
+  }
+
+  
+  .play-button.clicked {
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-10rem);
+  }
