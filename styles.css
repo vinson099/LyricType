@@ -22,29 +22,37 @@ body{
     max-width: 95%;
 }
 
-.lyricDisplay{
+/* so i can match the sizes of lyric-display and lyric-input */
+.flex-container{
+    display: flex;
+    position: relative;
+}
+
+.lyric-display{
+    position: absolute;
     margin-bottom: 1rem;
     margin-left: 2rem;
     margin-right: 2rem;
     color: rgb(142, 141, 141);
 }
 
-.lyricInput{
+.lyric-input{
+    position: absolute;
     background-color: transparent;
+    color: transparent;
     border: transparent;
     outline: none;
-    width: 100%;
-    max-width: 95%;
-    height: 15rem;
-    margin: 2rem;
-    font-size: 2rem;
-    font-family: 'Roboto Mono', monospace;
-    
+
+    flex:1;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    z-index: 5;
 }
 
-.lyricInput:focus{
+/* .lyric-input:focus{
     border-color: rgb(191, 172, 148);
-}
+} */
 
 .correct{
     color: black;
@@ -56,29 +64,46 @@ body{
 }
 
 .play-button {
-    display: inline-block;
-    width: 25rem; /* Adjust the width and height as needed */
-    height: 25rem;
+    position: fixed; /* Fixed position to keep it in view */
+    z-index: 9999; /* Set a high z-index value */
+    width: 50rem; /* Adjust the width and height as needed */
+    height: 50rem;
     background-color: #7403e4;
+    border: 25px solid #4e009b;
     color: white;
     text-align: center;
     font-size: 5rem;
     border-radius: 50%; /* Make it a circle */
-    /* transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; */
-
-    /* Ensure button is on top */
-    z-index: 9999; /* Set a high z-index value */
-
-    /* Centering on screen */
-    position: absolute;
     top: 50%;
     left: 50%;
-
-
-  }
-
+    /* Center horizontally and vertically */
+    transform: translate(-50%, -50%); 
+}
   
   .play-button.clicked {
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(-10rem);
+    transition: transform 2s ease-in-out .5s;
+    /* 
+        because we transformed initially in .play-button, we need to add -50% 
+        for the y to achieve an x-axis translate
+    */
+    transform: translate(-200rem, -50%);
+    
+  }
+  
+
+  .blur-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px); /* Adjust blur radius as needed */
+    z-index: 9998; /* Make sure it's behind other content */
+    transition: opacity 1s ease .5s; /* for fading out blur when play is clicked */
+  }
+
+  .blur-layer.fade-out {
+    /* fade out blur layer */
+    opacity: 0;
+    z-index: -1;
   }

@@ -1,6 +1,6 @@
 //retrieve lyric elements
-const lyricDisplayElement = document.querySelector('.lyricDisplay')
-const lyricInputElement = document.querySelector('.lyricInput');
+const lyricDisplayElement = document.querySelector('.lyric-display')
+const lyricInputElement = document.querySelector('.lyric-input');
 
 // placeholder text using api
 const RANDOM_QUOTE_API_URL = 'http://api.quotable.io/random'
