@@ -1,6 +1,6 @@
 //retrieve lyric elements
 const lyricDisplayElement = document.querySelector('.lyric-display')
-const lyricInputElement = document.querySelector('.lyric-input');
+const lyricInputElement = document.querySelector('.lyric-input')
 
 // placeholder text using api
 const RANDOM_QUOTE_API_URL = 'http://api.quotable.io/random'
@@ -14,13 +14,26 @@ function getLyrics(){
 
 async function renderNewLyric(){
     const lyric = await getLyrics()
+    // clear previous lyric
     lyricDisplayElement.innerText = ''
-    // split lyric into array of chars
-    lyric.split('').forEach(character => {
-        const characterSpan = document.createElement('span')
-        characterSpan.innerText = character
-        lyricDisplayElement.appendChild(characterSpan)
-    });
+    // split lyric into array of words
+    const words = lyric.split(' ')
+
+    words.forEach(word =>{
+        // split each word into array of chars
+        const characters = word.split("")
+
+        //add words to doc
+        const wordSpan = document.createElement('span')
+        wordSpan.innerText = word
+        lyricDisplayElement.appendChild(wordSpan)
+
+        //add space after each word
+        const spaceSpan = document.createElement('span')
+        spaceSpan.innerText = " "
+        lyricDisplayElement.appendChild(spaceSpan)
+    })
+
     // clear input
     lyricInputElement.value = ''
 }
@@ -36,33 +49,49 @@ lyricInputElement.addEventListener('input', () => {
     // initialize correct tracker
     let correct = true
 
-    arrayLyric.forEach((characterSpan, index) => {
-        // retrieve each character from its span
-        const character = arrayValue[index]
-        console.log(arrayLyric[index])
-        console.log(arrayValue[index])
+   
+    // retrieve each word from its span
+    let word = arrayLyric[index]
+    const wordAmt = wordSpan.length
 
-        //if character has not been typed yet
-        if(character === undefined){
-            characterSpan.classList.remove('incorrect')
-            characterSpan.classList.remove('correct')
-            correct = false
-        }
+    // console.log(arrayLyric[index])
+    // console.log(arrayValue[index])
 
-        // if the character matches
-        else if (character === characterSpan.innerText){
-            // mark as correct, reset incorrect tag
-            characterSpan.classList.add('correct')
-            characterSpan.classList.remove('incorrect')
-        }
+    let spaceCount = 0
+    while(spaceCount <= wordAmt){
+        //count amount of spaces in lyricInput
+        arrayValue.forEach(character => {
+            if (character === ' ') {
+                spaceCount++
+            }
+        })
 
-        //if character doesnt match
-        else{
-            characterSpan.classList.remove('correct')
-            characterSpan.classList.add('incorrect')
-            correct = false
-        }
-    })
+        
+
+    }
+
+
+
+    //if character has not been typed yet
+    if(character === undefined){
+        characterSpan.classList.remove('incorrect')
+        characterSpan.classList.remove('correct')
+        correct = false
+    }
+
+    // if the character matches
+    else if (character === characterSpan.innerText){
+        // mark as correct, reset incorrect tag
+        characterSpan.classList.add('correct')
+        characterSpan.classList.remove('incorrect')
+    }
+
+    //if character doesnt match
+    else{
+        characterSpan.classList.remove('correct')
+        characterSpan.classList.add('incorrect')
+        correct = false
+    }
 
     if(correct) {
         renderNewLyric()
