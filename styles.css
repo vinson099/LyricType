@@ -22,11 +22,6 @@ body{
     max-width: 95%;
 }
 
-/* so i can match the sizes of lyric-display and lyric-input */
-.flex-container{
-    display: flex;
-    position: relative;
-}
 
 .lyric-display{
     position: absolute;
@@ -35,24 +30,26 @@ body{
     margin-right: 2rem;
     color: rgb(142, 141, 141);
 }
-
+ 
 .lyric-input{
+    /* hide input */
     position: absolute;
     background-color: transparent;
     color: transparent;
     border: transparent;
     outline: none;
 
-    flex:1;
     margin-bottom: 1rem;
     margin-left: 2rem;
     margin-right: 2rem;
+    width: 95%;
     z-index: 5;
+
+    /* hide text box further  */
+    resize: none;
+    overflow: hidden;
 }
 
-/* .lyric-input:focus{
-    border-color: rgb(191, 172, 148);
-} */
 
 .correct{
     color: black;
@@ -87,7 +84,6 @@ body{
         for the y to achieve an x-axis translate
     */
     transform: translate(-200rem, -50%);
-    
   }
   
 
@@ -98,7 +94,7 @@ body{
     width: 100%;
     height: 100%;
     backdrop-filter: blur(10px); /* Adjust blur radius as needed */
-    z-index: 9998; /* Make sure it's behind other content */
+    z-index: 9998; /* Make sure it's behind play button */
     transition: opacity 1s ease .5s; /* for fading out blur when play is clicked */
   }
 
