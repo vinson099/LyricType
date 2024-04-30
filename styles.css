@@ -63,13 +63,13 @@ body{
 .play-button {
     position: fixed; /* Fixed position to keep it in view */
     z-index: 9999; /* Set a high z-index value */
-    width: 50rem; /* Adjust the width and height as needed */
-    height: 50rem;
+    width: 75vh; /* Adjust the width and height as needed */
+    height: 75vh;
     background-color: #7403e4;
     border: 25px solid #4e009b;
     color: white;
     text-align: center;
-    font-size: 5rem;
+    font-size: 50px;
     border-radius: 50%; /* Make it a circle */
     top: 50%;
     left: 50%;
@@ -85,6 +85,27 @@ body{
     */
     transform: translate(-200rem, -50%);
   }
+
+  .options{
+    z-index: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+
+  .option {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    
+    padding: 10px 20px;
+    background-color: #ddd;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }  
   
 
   .blur-layer {
@@ -101,5 +122,6 @@ body{
   .blur-layer.fade-out {
     /* fade out blur layer */
     opacity: 0;
+    /* put behind everything */
     z-index: -1;
   }
